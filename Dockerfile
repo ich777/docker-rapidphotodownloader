@@ -8,6 +8,7 @@ ENV TZ=Europe/Rome
 RUN apt-get -y install wget sudo xvfb wmctrl x11vnc fluxbox screen novnc
 
 ENV DATA_DIR=/rapidphotodownloader
+ENV DL_URL=""
 ENV UID=99
 ENV GID=100
 
