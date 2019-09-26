@@ -3,10 +3,11 @@ FROM ubuntu
 MAINTAINER ich777
 
 RUN apt-get update
-RUN apt-get -y install wget python3 python3-setuptools python3-pyqt5 python3-pip
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+ENV TZ=Europe/Rome
+RUN apt-get -y install wget xvfb wmctrl x11vnc fluxbox screen novnc rapid-photo-downloader
 
 ENV DATA_DIR=/rapidphotodownloader
-ENV DL_URL="https://launchpad.net/rapid/pyqt/0.9.17/+download/install.py"
 ENV UID=99
 ENV GID=100
 
