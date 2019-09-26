@@ -5,7 +5,7 @@ MAINTAINER ich777
 RUN apt-get update
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 ENV TZ=Europe/Rome
-RUN apt-get -y install wget sudo xvfb wmctrl x11vnc fluxbox screen novnc rapid-photo-downloader
+RUN apt-get -y install wget sudo xvfb wmctrl x11vnc fluxbox screen novnc
 
 ENV DATA_DIR=/rapidphotodownloader
 ENV UID=99
