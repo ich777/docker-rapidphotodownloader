@@ -103,7 +103,8 @@ websockify -D --web=/usr/share/novnc/ --cert=/etc/ssl/novnc.pem 8080 localhost:5
 sleep 5
 
 echo "---Starting Rapid Photo Downloader---"
-until ${DATA_DIR}/rpd/bin/rapid-photo-downloader; do
+cd ${DATA_DIR}/rpd/bin
+until ./rapid-photo-downloader; do
 	echo "Rapid Photo Downloader crashed with exit code $?.  Respawning.." >&2
 	sleep 1
 done
