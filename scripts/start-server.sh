@@ -30,7 +30,7 @@ else
 	fi
 fi
 
-echo "---Preparing directorys---"
+echo "---Preparing directories---"
 if [ ! -d "${DATA_DIR}/.cache/runtime-rpd" ]; then
 	if [ ! -d "${DATA_DIR}/.cache" ]; then
     	mkdir ${DATA_DIR}/.cache
@@ -38,19 +38,19 @@ if [ ! -d "${DATA_DIR}/.cache/runtime-rpd" ]; then
 	mkdir ${DATA_DIR}/.cache/runtime-rpd
 fi
 
-if [ ! -d "${DATA_DIR}/.config/Rapid\ Photo\ Downloader/" ]; then
+if [ ! -d "${DATA_DIR}/.config/Rapid Photo Downloader" ]; then
 	if [ ! -d "${DATA_DIR}/.config" ]; then
     	mkdir ${DATA_DIR}/.config
     fi
-    mkdir ${DATA_DIR}/.config/Rapid\ Photo\ Downloader
+    mkdir "${DATA_DIR}/.config/Rapid Photo Downloader"
 fi
 
-if [ ! -f "${DATA_DIR}/.config/Rapid\ Photo\ Downloader/Rapid\ Photo\ Downloader.conf" ]; then
-    cd ${DATA_DIR}/.config/Rapid\ Photo\ Downloader/
-    touch Rapid\ Photo\ Downloader.conf
+if [ ! -f "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf" ]; then
+    cd "${DATA_DIR}/.config/Rapid Photo Downloader/"
+    touch "Rapid Photo Downloader.conf"
 	echo "[MainWindow]
 windowPosition=@Point(0 0)
-windowSize=@Size(1024 881)" >> ${DATA_DIR}/.config/Rapid\ Photo\ Downloader/Rapid\ Photo\ Downloader.conf
+windowSize=@Size(1024 881)" >> "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf
 fi
 
 echo "---Preparing Server---"
