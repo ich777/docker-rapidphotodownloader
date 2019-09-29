@@ -10,17 +10,26 @@ if [ "${FORCE_UPDATE}" == "true" ]; then
 	echo "---------This can takes some time-----------"
 	echo "--------depending on your hardware----------"
 	echo "--------------------------------------------"
+    if [ -f "${DATA_DIR}/install.py" ]; then
+    	rm ${DATA_DIR}/install.py
+    fi
+    wget "${DL_URL}"
+    cd ${DATA_DIR}
 	python3 -m venv ${DATA_DIR}/rpd
 	source ${DATA_DIR}/rpd/bin/activate
 	python3 install.py --virtual-env
 	deactivate
 else
-	if [ ! -d "${DATA_DIR}/rpd" ]; then
+	if [ ! -f "${DATA_DIR}/rpd/bin/rapid-photo-downloader" ]; then
 		echo "--------------------------------------"
 		echo "---Rapid Photo Downloader not found---"
     	echo "-------This can takes some time-------"
     	echo "------depending on your hardware------"
     	echo "--------------------------------------"
+		if [ ! -f "${DATA_DIR}/install.py" ]; then
+			wget "${DL_URL}"
+		fi
+        cd ${DATA_DIR}
 		python3 -m venv ${DATA_DIR}/rpd
 		source ${DATA_DIR}/rpd/bin/activate
 		python3 install.py --virtual-env
