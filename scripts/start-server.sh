@@ -33,4 +33,9 @@ source ${DATA_DIR}/rpd/bin/activate
 python3 install.py --virtual-env
 deactivate
 
-${DATA_DIR}/rpd/bin/rapid-photo-downloader
+cd ${DATA_DIR}/rpd/bin/
+
+until ./rapid-photo-downloader; do
+	echo "Rapid Photo Downloader crashed with exit code $?.  Respawning.." >&2
+	sleep 1
+done
