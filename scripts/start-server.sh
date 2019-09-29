@@ -33,6 +33,20 @@ source ${DATA_DIR}/rpd/bin/activate
 python3 install.py --virtual-env
 deactivate
 
+if [ ! -d "${DATA_DIR}/.config/Rapid\ Photo\ Downloader/" ]; then
+	if [ ! -d "${DATA_DIR}/.config" ]; then
+    	mkdir ${DATA_DIR}/.config
+    fi
+    mkdir ${DATA_DIR}/.config/Rapid\ Photo\ Downloader
+fi
+
+if [ ! -f "${DATA_DIR}/.config/Rapid\ Photo\ Downloader/Rapid\ Photo\ Downloader.conf" ]; then
+    cd ${DATA_DIR}/.config/Rapid\ Photo\ Downloader/
+    touch Rapid\ Photo\ Downloader.conf
+	echo "[MainWindow]
+    windowPosition=@Point(0 0)
+    windowSize=@Size(1024 881)" >> ${DATA_DIR}/.config/Rapid\ Photo\ Downloader/Rapid\ Photo\ Downloader.conf
+
 mkdir ${DATA_DIR}/.cache/runtime-rpd
 
 export XDG_RUNTIME_DIR=${DATA_DIR}/.cache/runtime-rpd/
