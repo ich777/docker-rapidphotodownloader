@@ -33,6 +33,10 @@ source ${DATA_DIR}/rpd/bin/activate
 python3 install.py --virtual-env
 deactivate
 
+mkdir ${DATA_DIR}/.cache/runtime-rpd
+
+export XDG_RUNTIME_DIR=${DATA_DIR}/.cache/runtime-rpd/
+
 cd ${DATA_DIR}/rpd/bin/
 
 until ./rapid-photo-downloader; do
