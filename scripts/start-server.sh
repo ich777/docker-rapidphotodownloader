@@ -88,7 +88,7 @@ find $DATA_DIR -name "XvfbLog.*" -exec rm -f {} \;
 find $DATA_DIR -name "x11vncLog.*" -exec rm -f {} \;
 echo "---Checking for old lock files---"
 find /tmp -name ".X99*" -exec rm -f {} \;
-find /var/run/dbus/pid -name "pid" -exec rm -f {} \;
+find /var/run/dbus -name "pid" -exec rm -f {} \;
 chmod -R 770 ${DATA_DIR}
 
 echo "---Starting dbus service---"
