@@ -114,7 +114,7 @@ sleep 5
 
 echo "---Starting Rapid Photo Downloader---"
 cd ${DATA_DIR}/rpd/bin
-until ./rapid-photo-downloader; do
+until ${DATA_DIR}rpd/bin/rapid-photo-downloader; do
 	echo "Rapid Photo Downloader crashed with exit code $?.  Respawning.." >&2
 	sleep 1
 done
