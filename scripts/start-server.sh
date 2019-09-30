@@ -79,7 +79,15 @@ if [ ! -f "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.con
     touch "Rapid Photo Downloader.conf"
 	echo "[MainWindow]
 windowPosition=@Point(0 0)
-windowSize=@Size(1024 881)" >> "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf"
+windowSize=@Size(1024 881)
+
+[Device]
+device_autodetection=false
+this_computer_path=/media/source
+this_computer_source=true
+
+[Rename]
+photo_download_folder=/media/destiantion" >> "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf"
 fi
 
 echo "---Preparing Server---"
