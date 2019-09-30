@@ -14,8 +14,6 @@ Please also check out the Developers website of Rapid Photo Downloader: https://
 | GID | Group Identifier | 100 |
 
 
->**NOTE** At Docker startup there can be much segmentation fault's, let the Docker run until the log doesn't put out new segmentation fault's!
-
 ## Run example
 ```
 docker run --name RapidPhotoDownloader -d \
