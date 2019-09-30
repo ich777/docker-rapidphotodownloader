@@ -13,7 +13,7 @@ Please also check out the Developers website of Rapid Photo Downloader: https://
 | UID | User Identifier | 99 |
 | GID | Group Identifier | 100 |
 
->**NOTE** Please be sure to not change the directory for the source '/media/source' and the destination '/media/destination' folders otherwise the container will not properly work!
+>**NOTE** Please be sure to NOT change the directory for the source '/media/source' and the destination '/media/destination' folders otherwise the container will not properly work!
 
 ## Run example
 ```
