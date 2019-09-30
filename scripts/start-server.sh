@@ -74,20 +74,34 @@ if [ ! -d "${DATA_DIR}/.config/Rapid Photo Downloader" ]; then
     mkdir "${DATA_DIR}/.config/Rapid Photo Downloader"
 fi
 
+if [ ! -d "${DATA_DIR}/.local/share" ]; then
+	if [ ! -d "${DATA_DIR}/.local" ]; then
+    	mkdir ${DATA_DIR}/.local
+    fi
+    mkdir ${DATA_DIR}/.local/share
+fi
+
 if [ ! -f "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf" ]; then
     cd "${DATA_DIR}/.config/Rapid Photo Downloader/"
     touch "Rapid Photo Downloader.conf"
-	echo "[MainWindow]
+	echo "[Automation]
+verify_file=false
+
+[Display]
+did_you_know_on_startup=true
+ignore_unhandled_file_exts=TMP, DAT
+
+[MainWindow]
 windowPosition=@Point(0 0)
 windowSize=@Size(1024 881)
 
 [Device]
 device_autodetection=false
-this_computer_path=/media/source
+this_computer_path=/mnt
 this_computer_source=true
 
 [Rename]
-photo_download_folder=/media/destiantion" >> "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf"
+photo_download_folder=/media" >> "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf"
 fi
 
 echo "---Preparing Server---"
