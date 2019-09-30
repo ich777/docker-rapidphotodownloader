@@ -24,11 +24,12 @@ docker run --name RapidPhotoDownloader -d \
     --env 'UID=99' \
     --env 'GID=100' \
     --volume /mnt/user/appdata/rapidphotodownloader:/rapidphotodownloader \
+    --volume /mnt/user/destination_folder:/media/destination \
+    --volume /mnt/user/source_folder:/media/source \
     --restart=unless-stopped \
     ich777/rapidphotodownloader
 ```
 ### Webgui address: http://[SERVERIP]:[PORT]/vnc_auto.html
-## After each startup press one more time 'ENTER' in the Webgui and you're ready to go!
 
 
 Please check also the Developers (Damon Lynch) website out: https://www.damonlynch.net/ or from RPD: https://www.damonlynch.net/rapid/
