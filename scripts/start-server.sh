@@ -86,9 +86,19 @@ echo "---Preparing Server---"
 echo "---Checking for old logfiles---"
 find $DATA_DIR -name "XvfbLog.*" -exec rm -f {} \;
 find $DATA_DIR -name "x11vncLog.*" -exec rm -f {} \;
-echo "---Checking for old display lock files---"
+echo "---Checking for old lock files---"
 find /tmp -name ".X99*" -exec rm -f {} \;
+find /var/run/dbus/pid -name "pid" -exec rm -f {} \;
 chmod -R 770 ${DATA_DIR}
+
+echo "---Starting dbus service---"
+if dbus-daemon --config-file=/usr/share/dbus-1/system.conf ; then
+	echo "---dbus service started---"
+else
+	echo "---Couldn't start dbus service---"
+	sleep infinity
+fi
+sleep 5
 
 echo "---Starting Xvfb server---"
 screen -S Xvfb -L -Logfile ${DATA_DIR}/XvfbLog.0 -d -m /opt/scripts/start-Xvfb.sh
