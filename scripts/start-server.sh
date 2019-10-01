@@ -104,11 +104,23 @@ this_computer_source=true
 photo_download_folder=/media" >> "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf"
 fi
 
-if { grep -rq 'windowSize=@Size([0-9])' "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf" =! "windowSize=@Size(${CUSTOM_RES_W} ${CUSTOM_RES_H}) }; then
-	echo "---Window resolution not correct, correcting...---"
-	sed -i '/windowSize=@Size/c\(${CUSTOM_RES_W} ${CUSTOM_RES_H})' "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf"
-elif { grep -rq 'windowSize=@Size([0-9])' "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf" == "windowSize=@Size(${CUSTOM_RES_W} ${CUSTOM_RES_H}) }; then
-	echo "---Window resolution correct---"
+echo "---Resolution check---"
+if (( "${CUSTOM_RES_W}" <= "999" )); then
+	echo "---Width to low must be a minimal of 1000 pixels, correcting to 1000...---"
+    CUSTOM_RES_W="1000"
+fi
+if (( "${CUSTOM_RES_H}" <= "880" )); then
+	echo "---Height to low must be a minimal of 880 pixels, correcting to 880...---"
+    CUSTOM_RES_H="880"
+fi
+
+WINDOWRES=$(grep -e 'windowSize=@Size(.... ' ${DATA_DIR}/.config/Rapid\ Photo\ Downloader/Rapid\ Photo\ Downloader.conf)
+
+if [ "WINDOWRES =! "windowSize=@Size(${CUSTOM_RES_W} ${CUSTOM_RES_H})" ]; then
+	echo "---Window resoltuion changed to ${CUSTOM_RES_W}x${CUSTOM_RES_H}, writing to config file---"
+	sed -i '/$WINDOWRES/c\windowSize=@Size(${CUSTOM_RES_W} ${CUSTOM_RES_H})' "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf"
+else
+	echo "---Window resolution: ${CUSTOM_RES_W}x${CUSTOM_RES_H}---"
 fi
 
 echo "---Preparing Server---"
