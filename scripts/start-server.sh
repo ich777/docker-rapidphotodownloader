@@ -81,6 +81,32 @@ if [ ! -d "${DATA_DIR}/.local/share" ]; then
     mkdir ${DATA_DIR}/.local/share
 fi
 
+echo "---Resolution check---"
+if [ -z "${CUSTOM_RES_W} ]; then
+	CUSTOM_RES_W=1024
+fi
+if [ -z "${CUSTOM_RES_H} ]; then
+	CUSTOM_RES_W=881
+fi
+
+if [ "${CUSTOM_RES_W}" -le 999 ]; then
+	echo "---Width to low must be a minimal of 1000 pixels, correcting to 1000...---"
+    CUSTOM_RES_W=1000
+fi
+if [ "${CUSTOM_RES_H}" -le 880 ]; then
+	echo "---Height to low must be a minimal of 880 pixels, correcting to 880...---"
+    CUSTOM_RES_H=880
+fi
+
+WINDOWRES=$(grep -e 'windowSize=@Size(.... ' ${DATA_DIR}/.config/Rapid\ Photo\ Downloader/Rapid\ Photo\ Downloader.conf)
+
+if [ "$WINDOWRES" != "windowSize=@Size(${CUSTOM_RES_W} ${CUSTOM_RES_H})" ]; then
+	echo "---Window resoltuion changed to ${CUSTOM_RES_W}x${CUSTOM_RES_H}, writing to config file---"
+	sed -i '/$WINDOWRES/c\windowSize=@Size(${CUSTOM_RES_W} ${CUSTOM_RES_H})' "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf"
+else
+	echo "---Window resolution: ${CUSTOM_RES_W}x${CUSTOM_RES_H}---"
+fi
+
 if [ ! -f "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf" ]; then
     cd "${DATA_DIR}/.config/Rapid Photo Downloader/"
     touch "Rapid Photo Downloader.conf"
@@ -102,32 +128,6 @@ this_computer_source=true
 
 [Rename]
 photo_download_folder=/media" >> "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf"
-fi
-
-echo "---Resolution check---"
-if [ -z "${CUSTOM_RES_W} ]; then
-	CUSTOM_RES_W=1024
-fi
-if [ -z "${CUSTOM_RES_H} ]; then
-	CUSTOM_RES_W=881
-fi
-
-if [ "${CUSTOM_RES_W}" -le 999 ]; then
-	echo "---Width to low must be a minimal of 1000 pixels, correcting to 1000...---"
-    CUSTOM_RES_W=1000
-fi
-if [ "${CUSTOM_RES_H}" -le 880 ]; then
-	echo "---Height to low must be a minimal of 880 pixels, correcting to 880...---"
-    CUSTOM_RES_H=880
-fi
-
-WINDOWRES=$(grep -e 'windowSize=@Size(.... ' ${DATA_DIR}/.config/Rapid\ Photo\ Downloader/Rapid\ Photo\ Downloader.conf)
-
-if [ "$WINDOWRES" =! "windowSize=@Size(${CUSTOM_RES_W} ${CUSTOM_RES_H})" ]; then
-	echo "---Window resoltuion changed to ${CUSTOM_RES_W}x${CUSTOM_RES_H}, writing to config file---"
-	sed -i '/$WINDOWRES/c\windowSize=@Size(${CUSTOM_RES_W} ${CUSTOM_RES_H})' "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf"
-else
-	echo "---Window resolution: ${CUSTOM_RES_W}x${CUSTOM_RES_H}---"
 fi
 
 echo "---Preparing Server---"
