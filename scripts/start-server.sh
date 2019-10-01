@@ -93,7 +93,7 @@ ignore_unhandled_file_exts=TMP, DAT
 
 [MainWindow]
 windowPosition=@Point(0 0)
-windowSize=@Size(1024 881)
+windowSize=@Size(${CUSTOM_RES_W} ${CUSTOM_RES_H})
 
 [Device]
 device_autodetection=false
@@ -102,6 +102,13 @@ this_computer_source=true
 
 [Rename]
 photo_download_folder=/media" >> "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf"
+fi
+
+if { grep -rq 'windowSize=@Size([0-9])' "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf" =! "windowSize=@Size(${CUSTOM_RES_W} ${CUSTOM_RES_H}) }; then
+	echo "---Window resolution not correct, correcting...---"
+	sed -i '/windowSize=@Size/c\(${CUSTOM_RES_W} ${CUSTOM_RES_H})' "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf"
+elif { grep -rq 'windowSize=@Size([0-9])' "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf" == "windowSize=@Size(${CUSTOM_RES_W} ${CUSTOM_RES_H}) }; then
+	echo "---Window resolution correct---"
 fi
 
 echo "---Preparing Server---"
