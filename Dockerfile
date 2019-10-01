@@ -11,7 +11,7 @@ RUN apt-get -y install wget sudo xvfb wmctrl x11vnc fluxbox screen novnc python3
 ENV DATA_DIR=/rapidphotodownloader
 ENV DL_URL="https://launchpad.net/rapid/pyqt/0.9.17/+download/install.py"
 ENV FORCE_UPDATE=""
-ENV CUSTOM_RES="1024x788"
+ENV CUSTOM_RES="1024x881"
 ENV UID=99
 ENV GID=100
 
