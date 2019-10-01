@@ -125,7 +125,7 @@ WINDOWRES=$(grep -e 'windowSize=@Size(.... ' ${DATA_DIR}/.config/Rapid\ Photo\ D
 
 if [ "$WINDOWRES" != "windowSize=@Size(${CUSTOM_RES_W} ${CUSTOM_RES_H})" ]; then
 	echo "---Window resoltuion changed to ${CUSTOM_RES_W}x${CUSTOM_RES_H}, writing to config file---"
-	sed -i '/$WINDOWRES/c\windowSize=@Size(${CUSTOM_RES_W} ${CUSTOM_RES_H})' "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf"
+	sed -i "/$WINDOWRES/c\windowSize=@Size(${CUSTOM_RES_W} ${CUSTOM_RES_H})" "${DATA_DIR}/.config/Rapid Photo Downloader/Rapid Photo Downloader.conf"
 else
 	echo "---Window resolution: ${CUSTOM_RES_W}x${CUSTOM_RES_H}---"
 fi
