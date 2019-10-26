@@ -86,7 +86,7 @@ if [ -z "${CUSTOM_RES_W} ]; then
 	CUSTOM_RES_W=1024
 fi
 if [ -z "${CUSTOM_RES_H} ]; then
-	CUSTOM_RES_W=881
+	CUSTOM_RES_H=881
 fi
 
 if [ "${CUSTOM_RES_W}" -le 999 ]; then
