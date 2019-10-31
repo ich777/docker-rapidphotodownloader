@@ -137,6 +137,10 @@ find $DATA_DIR -name "x11vncLog.*" -exec rm -f {} \;
 echo "---Checking for old lock files---"
 find /tmp -name ".X99*" -exec rm -f {} \;
 find /var/run/dbus -name "pid" -exec rm -f {} \;
+
+echo "---Setting umask to ${UMASK}---"
+umask ${UMASK}
+
 chmod -R 770 ${DATA_DIR}
 
 echo "---Starting dbus service---"
