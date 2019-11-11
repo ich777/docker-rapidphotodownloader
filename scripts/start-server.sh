@@ -2,6 +2,8 @@
 export LANG=en_US.UTF-8
 export DISPLAY=:99
 export XDG_RUNTIME_DIR=${DATA_DIR}/.cache/runtime-rpd/
+echo "---Setting umask to ${UMASK}---"
+umask ${UMASK}
 
 echo "---Checking if Rapid Photo Downloader is installed---"
 if [ "${FORCE_UPDATE}" == "true" ]; then
@@ -138,10 +140,7 @@ echo "---Checking for old lock files---"
 find /tmp -name ".X99*" -exec rm -f {} \;
 find /var/run/dbus -name "pid" -exec rm -f {} \;
 
-echo "---Setting umask to ${UMASK}---"
-umask ${UMASK}
-
-chmod -R 770 ${DATA_DIR}
+chmod -R 777 ${DATA_DIR}
 
 echo "---Starting dbus service---"
 if dbus-daemon --config-file=/usr/share/dbus-1/system.conf ; then
