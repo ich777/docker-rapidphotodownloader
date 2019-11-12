@@ -28,12 +28,14 @@ RUN echo "rpd ALL=(root) NOPASSWD:/usr/bin/apt-get" >> /etc/sudoers
 ADD /scripts/ /opt/scripts/
 RUN rm /usr/share/novnc/favicon.ico
 COPY /rapidphotodownloader.ico /usr/share/novnc/favicon.ico
+COPY /x11vnc /usr/bin/x11vnc
 RUN chmod -R 770 /opt/scripts/
 RUN chown -R rpd /opt/scripts/
 RUN dbus-uuidgen > /var/lib/dbus/machine-id
 RUN mkdir -p /var/run/dbus
 RUN chmod -R 770 /var/run/dbus/
 RUN chown -R rpd /var/run/dbus/
+RUN chmod 751 /usr/bin/x11vnc
 
 USER rpd
 
