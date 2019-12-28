@@ -27,6 +27,7 @@ RUN mkdir $DATA_DIR	&& \
 	echo "rpd ALL=(root) NOPASSWD:/usr/bin/apt-get" >> /etc/sudoers
 
 ADD /scripts/ /opt/scripts/
+COPY /icons/* /usr/share/novnc/app/images/icons/
 RUN chmod -R 770 /opt/scripts/ && \
 	chown -R rpd /opt/scripts/ && \
 	chmod -R 770 /var/run/dbus/ && \
