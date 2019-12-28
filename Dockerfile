@@ -29,8 +29,6 @@ RUN mkdir $DATA_DIR	&& \
 ADD /scripts/ /opt/scripts/
 RUN chmod -R 770 /opt/scripts/ && \
 	chown -R rpd /opt/scripts/ && \
-	dbus-uuidgen > /var/lib/dbus/machine-id && \
-	mkdir -p /var/run/dbus && \
 	chmod -R 770 /var/run/dbus/ && \
 	chown -R rpd /var/run/dbus/
 
