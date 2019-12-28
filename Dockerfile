@@ -29,7 +29,7 @@ RUN mkdir $DATA_DIR	&& \
 ADD /scripts/ /opt/scripts/
 COPY /icons/* /usr/share/novnc/app/images/icons/
 RUN chmod -R 770 /opt/scripts/ && \
-	chown -R rpd /opt/scripts/ && \
+	chown -R rpd /opt/scripts/
 
 USER rpd
 
