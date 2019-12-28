@@ -30,8 +30,6 @@ ADD /scripts/ /opt/scripts/
 COPY /icons/* /usr/share/novnc/app/images/icons/
 RUN chmod -R 770 /opt/scripts/ && \
 	chown -R rpd /opt/scripts/ && \
-	chmod -R 770 /var/run/dbus/ && \
-	chown -R rpd /var/run/dbus/
 
 USER rpd
 
