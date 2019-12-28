@@ -6,7 +6,7 @@ RUN export TZ=Europe/Rome && \
 	apt-get update && \
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
 	echo $TZ > /etc/timezone && \
-	apt-get -y install --no-install-recommends sudo && \
+	apt-get -y install --no-install-recommends sudo dbus && \
 	rm -rf /var/lib/apt/lists/* && \
 	sed -i '/    document.title =/c\    document.title = "RapidPhotoDownloader - noVNC";' /usr/share/novnc/app/ui.js && \
 	rm /usr/share/novnc/app/images/icons/*
@@ -29,7 +29,11 @@ RUN mkdir $DATA_DIR	&& \
 ADD /scripts/ /opt/scripts/
 COPY /icons/* /usr/share/novnc/app/images/icons/
 RUN chmod -R 770 /opt/scripts/ && \
-	chown -R rpd /opt/scripts/
+	chown -R rpd /opt/scripts/ && \
+	dbus-uuidgen > /var/lib/dbus/machine-id && \
+	mkdir -p /var/run/dbus && \
+	chmod -R 770 /var/run/dbus/ && \
+	chown -R rpd /var/run/dbus/
 
 USER rpd
 
