@@ -140,7 +140,8 @@ echo "---Checking for old lock files---"
 find /tmp -name ".X99*" -exec rm -f {} \;
 find /var/run/dbus -name "pid" -exec rm -f {} \;
 
-chmod -R 777 ${DATA_DIR}/rpd
+chmod -R 777 ${DATA_DIR}
+chmod -R 7700 ${DATA_DIR}/.cache
 
 echo "---Starting dbus service---"
 if dbus-daemon --config-file=/usr/share/dbus-1/system.conf ; then
