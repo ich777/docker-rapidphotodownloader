@@ -35,5 +35,7 @@ ADD /scripts/ /opt/scripts/
 COPY /icons/* /usr/share/novnc/app/images/icons/
 RUN chmod -R 770 /opt/scripts/
 
+EXPOSE 8080
+
 #Server Start
 ENTRYPOINT ["/opt/scripts/start.sh"]
