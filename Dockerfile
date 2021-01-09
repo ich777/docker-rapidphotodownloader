@@ -14,6 +14,11 @@ RUN export TZ=Europe/Rome && \
 	sed -i '/    document.title =/c\    document.title = "RapidPhotoDownloader - noVNC";' /usr/share/novnc/app/ui.js && \
 	rm /usr/share/novnc/app/images/icons/*
 
+RUN cd /tmp && \
+	wget https://github.com/ich777/docker-rapidphotodownloader/raw/master/libxcb-util1_0.4.0-0.1_amd64.deb && \
+	dpkg -i libxcb-util1_0.4.0-0.1_amd64.deb && \
+	rm -rf /tmp/libxcb-util1_0.4.0-0.1_amd64.deb
+
 ENV DATA_DIR=/rapidphotodownloader
 ENV DL_URL="https://launchpad.net/rapid/pyqt/0.9.17/+download/install.py"
 ENV FORCE_UPDATE=""
