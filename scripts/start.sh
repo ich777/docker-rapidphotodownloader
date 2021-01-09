@@ -26,8 +26,8 @@ chmod -R 770 /var/run/dbus/
 chown -R ${UID}:${GID} ${DATA_DIR}
 
 term_handler() {
-	kill -SIGTERM "$(pidof python3)" 2>/dev/null
-	tail --pid="$(pidof python3)" -f 2>/dev/null
+	kill -SIGTERM "$killpid"
+	wait "$killpid" -f 2>/dev/null
 	exit 143;
 }
 
