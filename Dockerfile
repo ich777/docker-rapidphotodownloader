@@ -1,4 +1,4 @@
-FROM ich777/novnc-baseimage:buster
+FROM ich777/novnc-baseimage:buster_amd64
 
 LABEL maintainer="admin@minenet.at"
 
