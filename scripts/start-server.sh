@@ -1,8 +1,7 @@
 #!/bin/bash
-echo "---Container under Construction..!---"
-sleep infinity
 export LANG=en_US.UTF-8
 export DISPLAY=:99
+export XAUTHORITY=${DATA_DIR}/.Xauthority
 export XDG_RUNTIME_DIR=${DATA_DIR}/.cache/runtime-rpd/
 
 echo "---Checking if Rapid Photo Downloader is installed---"
@@ -153,7 +152,7 @@ fi
 sleep 5
 
 echo "---Starting TurboVNC server---"
-vncserver -geometry ${CUSTOM_RES_W}x${CUSTOM_RES_H} -depth ${CUSTOM_DEPTH} :0 -rfbport ${RFB_PORT} -noxstartup ${TURBOVNC_PARAMS} 2>/dev/null
+vncserver -geometry ${CUSTOM_RES_W}x${CUSTOM_RES_H} -depth ${CUSTOM_DEPTH} ${DISPLAY} -rfbport ${RFB_PORT} -noxstartup ${TURBOVNC_PARAMS} 2>/dev/null
 sleep 2
 echo "---Starting Fluxbox---"
 screen -d -m env HOME=/etc /usr/bin/fluxbox
