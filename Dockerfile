@@ -25,6 +25,7 @@ ENV DL_URL="https://launchpad.net/rapid/pyqt/0.9.17/+download/install.py"
 ENV FORCE_UPDATE=""
 ENV CUSTOM_RES_W=1024
 ENV CUSTOM_RES_H=881
+ENV CUSTOM_DEPTH=16
 ENV NOVNC_PORT=8080
 ENV RFB_PORT=5900
 ENV TURBOVNC_PARAMS="-securitytypes none" 
